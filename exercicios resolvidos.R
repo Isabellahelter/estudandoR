@@ -292,7 +292,8 @@ ks.test(exercicio1,
         mean=0,
         sd = sqrt(10))
 #p-valor muito baixo, então vai rejeitar a aderência dos dados a uma normal(?)
-
+#Exercicio 3) Abra o arquivo exercicio3.dta e teste se os dados são normais.
+#Solução:
 install.packages("readxl")
 library(readxl)
 install.packages("haven")
@@ -302,3 +303,27 @@ exercicio3 <- read_dta("C:/Users/isabe/Downloads/Aula 2 - Importando e Simulando
 View(exercicio3)
 is.numeric(exercicio3)
 #nao consegui fazer esse
+#Exercicio 4) P(3<Y<30) dado que  Y???Poisson(8)
+#Solução:
+help("dpois")
+ppois(30, lambda = 8) - ppois(3, lambda = 8)
+#Exercicio 5)Gere uma amostra com n=500 da variável A???F(2,4)
+#Solução:
+help(df)
+A = rf(n = 500,
+       df1 = 2,
+       df2 = 4)
+A
+#Exercicio 6)Encontre o número c tal que  P(Z>c)=0.7 e Z???Gamma(1,5)
+#Solução:
+help("rgamma")
+qgamma(0.7, 5, rate = 1,
+       lower.tail = FALSE)
+#TERCEIRA AULA
+#Exercicio 1)Com pipes e funções do dplyr encontre a média de mensalidade e de nota de corte para cursos por estado com os dados em prouni.Rds
+#Solução:
+fax = data.frame(prouni)
+fax
+mean(fax$mensalidade)
+mediadasmens = aggregate(nota_integral_ampla ~ mensalidade,  subset = as.factor(fax$uf_busca) %in% RJ, FUN = mean)
+                        
